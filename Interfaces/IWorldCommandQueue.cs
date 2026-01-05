@@ -6,6 +6,6 @@ namespace LibreWorlds.WorldQueue.Interfaces
     {
         void Enqueue(IWorldCommand command);
 
-        IReadOnlyList<IWorldCommand> Drain();
+        bool TryDequeue(out IWorldCommand command);
     }
 }

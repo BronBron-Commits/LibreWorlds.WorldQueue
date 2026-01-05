@@ -9,22 +9,12 @@ namespace LibreWorlds.WorldQueue.Queue
 
         public void Enqueue(IWorldCommand command)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-
             _queue.Enqueue(command);
         }
 
-        public IReadOnlyList<IWorldCommand> Drain()
+        public bool TryDequeue(out IWorldCommand command)
         {
-            var list = new List<IWorldCommand>();
-
-            while (_queue.TryDequeue(out var cmd))
-            {
-                list.Add(cmd);
-            }
-
-            return list;
+            return _queue.TryDequeue(out command);
         }
     }
 }
