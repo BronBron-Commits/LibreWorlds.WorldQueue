@@ -1,11 +1,12 @@
 namespace LibreWorlds.WorldQueue.Commands;
 
-public sealed class RemoveObjectCommand
+public sealed class RemoveObjectCommand : WorldCommandBase
 {
-    public long ObjectId { get; }
-
-    public RemoveObjectCommand(long objectId)
+    public RemoveObjectCommand(long sequence, long objectId)
+        : base(sequence)
     {
         ObjectId = objectId;
     }
+
+    public long ObjectId { get; }
 }

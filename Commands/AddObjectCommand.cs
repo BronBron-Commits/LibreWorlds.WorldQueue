@@ -1,35 +1,28 @@
 using System.Numerics;
-using LibreWorlds.WorldQueue.Interfaces;
 
-namespace LibreWorlds.WorldQueue.Commands
+namespace LibreWorlds.WorldQueue.Commands;
+
+public sealed class AddObjectCommand : WorldCommandBase
 {
-    public sealed class AddObjectCommand : WorldCommandBase
+    public AddObjectCommand(
+        long sequence,
+        long objectId,
+        string modelName,
+        ReadOnlyMemory<byte> modelBytes,
+        Vector3 position,
+        Quaternion rotation
+    ) : base(sequence)
     {
-        private readonly int _id;
-        private readonly string _model;
-        private readonly ReadOnlyMemory<byte> _data;
-        private readonly Vector3 _position;
-        private readonly Quaternion _rotation;
-
-        public AddObjectCommand(
-            long sequence,
-            int id,
-            string model,
-            ReadOnlyMemory<byte> data,
-            Vector3 position,
-            Quaternion rotation)
-            : base(sequence)
-        {
-            _id = id;
-            _model = model;
-            _data = data;
-            _position = position;
-            _rotation = rotation;
-        }
-
-        public override void ExecuteOn(IWorldEngine engine)
-        {
-            engine.AddObject(_id, _model, _data, _position, _rotation);
-        }
+        ObjectId = objectId;
+        ModelName = modelName;
+        ModelBytes = modelBytes;
+        Position = position;
+        Rotation = rotation;
     }
+
+    public long ObjectId { get; }
+    public string ModelName { get; }
+    public ReadOnlyMemory<byte> ModelBytes { get; }
+    public Vector3 Position { get; }
+    public Quaternion Rotation { get; }
 }

@@ -1,9 +1,13 @@
-namespace LibreWorlds.WorldQueue.Interfaces
-{
-    public interface IWorldCommand
-    {
-        long Sequence { get; }
+namespace LibreWorlds.WorldQueue.Interfaces;
 
-        void ExecuteOn(IWorldEngine engine);
-    }
+/// <summary>
+/// Represents a queued world command.
+/// This is PURE DATA. No execution.
+/// </summary>
+public interface IWorldCommand
+{
+    /// <summary>
+    /// Identifier for ordering / debugging.
+    /// </summary>
+    long Sequence { get; }
 }
