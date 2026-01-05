@@ -1,13 +1,19 @@
-namespace LibreWorlds.WorldQueue.Commands
-{
-    public sealed class RemoveObjectCommand : WorldCommandBase
-    {
-        public int ObjectId { get; }
+using LibreWorlds.WorldQueue.Interfaces;
 
-        public RemoveObjectCommand(long sequence, int objectId)
-            : base(sequence)
-        {
-            ObjectId = objectId;
-        }
+namespace LibreWorlds.WorldQueue.Commands;
+
+public sealed class RemoveObjectCommand : WorldCommandBase
+{
+    public int ObjectId { get; }
+
+    public RemoveObjectCommand(long tick, int objectId)
+        : base(tick)
+    {
+        ObjectId = objectId;
+    }
+
+    public override void Execute(IWorldEngine engine)
+    {
+        engine.RemoveObject(ObjectId);
     }
 }

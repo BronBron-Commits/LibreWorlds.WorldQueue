@@ -1,11 +1,6 @@
-namespace LibreWorlds.WorldQueue.Interfaces
+namespace LibreWorlds.WorldQueue.Interfaces;
+
+public interface IWorldCommand
 {
-    /// <summary>
-    /// Marker interface for ordered world commands.
-    /// Commands contain data only.
-    /// </summary>
-    public interface IWorldCommand
-    {
-        long Sequence { get; }
-    }
+    void Execute(IWorldEngine engine);
 }
