@@ -1,6 +1,9 @@
-namespace LibreWorlds.WorldQueue.Interfaces;
-
-public interface IWorldCommand
+namespace LibreWorlds.WorldQueue.Interfaces
 {
-    void Execute(IWorldEngine engine);
+    public interface IWorldCommand
+    {
+        long Sequence { get; }
+
+        void ExecuteOn(IWorldEngine engine);
+    }
 }

@@ -1,24 +1,21 @@
 using System.Numerics;
 
-namespace LibreWorlds.WorldQueue.Interfaces;
-
-/// <summary>
-/// Minimal authoritative world mutation surface.
-/// Implemented by the runtime / engine layer.
-/// </summary>
-public interface IWorldEngine
+namespace LibreWorlds.WorldQueue.Interfaces
 {
-    void AddObject(
-        int objectId,
-        string modelName,
-        ReadOnlyMemory<byte> modelBytes,
-        Vector3 position,
-        Quaternion rotation);
+    public interface IWorldEngine
+    {
+        void AddObject(
+            int id,
+            string modelName,
+            ReadOnlyMemory<byte> modelData,
+            Vector3 position,
+            Quaternion rotation);
 
-    void UpdateObjectTransform(
-        int objectId,
-        Vector3 position,
-        Quaternion rotation);
+        void UpdateObjectTransform(
+            int id,
+            Vector3 position,
+            Quaternion rotation);
 
-    void RemoveObject(int objectId);
+        void RemoveObject(int id);
+    }
 }

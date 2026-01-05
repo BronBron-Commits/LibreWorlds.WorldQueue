@@ -1,15 +1,16 @@
 using LibreWorlds.WorldQueue.Interfaces;
 
-namespace LibreWorlds.WorldQueue.Commands;
-
-public abstract class WorldCommandBase : IWorldCommand
+namespace LibreWorlds.WorldQueue.Commands
 {
-    protected WorldCommandBase(long tick)
+    public abstract class WorldCommandBase : IWorldCommand
     {
-        Tick = tick;
+        public long Sequence { get; }
+
+        protected WorldCommandBase(long sequence)
+        {
+            Sequence = sequence;
+        }
+
+        public abstract void ExecuteOn(IWorldEngine engine);
     }
-
-    public long Tick { get; }
-
-    public abstract void Execute(IWorldEngine engine);
 }
